@@ -156,10 +156,13 @@ void foo()
 
 int main()
 {
-    // 如果没有特别指定，就从“Second”中取得所需的内容。
+    // 在当前命名空间中包含Second当中定义的所有符号。
     using namespace Second;
 
-    foo(); // 显示“This is Second::foo”
+    Second::foo(); // 显示“This is Second::foo”
+    // 注意，C++不再支持省略命名空间的“foo()”这种写法，
+    // 因为这种写法存在歧义，既可以指定义在顶层的foo，也可能指Second中的foo。
+    
     First::Nested::foo(); // 显示“This is First::Nested::foo”
     ::foo(); // 显示“This is global foo”
 }
@@ -232,11 +235,19 @@ string bar = "I am bar";
 
 string& fooRef = foo; // 建立了一个对foo的引用。
 fooRef += ". Hi!"; // 通过引用来修改foo的值
-cout << fooRef; // "I am foo. Hi!"
+cout << fooRef; // 显示"I am foo. Hi!"
 
-// 这句话的并不会改变fooRef的指向，其效果与“foo = bar”相同。
+cout << &fooRef << endl; // 显示foo在内存中的地址
+
+// 这句话并不会改变fooRef的指向，其效果与“foo = bar”相同。
 // 也就是说，在执行这条语句之后，foo == "I am bar"。
 fooRef = bar;
+
+cout << &fooRef << endl; // 再次显示foo在内存中的地址
+// fooRef的地址并没有变化。换句话说，fooRef现在仍然指向foo。
+
+cout << fooRef;  // 显示"I am bar"
+
 
 const string& barRef = bar; // 建立指向bar的常量引用。
 // 和C语言中一样，（指针和引用）声明为常量时，对应的值不能被修改。
