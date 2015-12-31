@@ -4,6 +4,8 @@ filename: learncpp-cn.cpp
 contributors:
     - ["Steven Basart", "http://github.com/xksteven"]
     - ["Matt Kline", "https://github.com/mrkline"]
+    - ["Geoff Liu", "http://geoffliu.me"]
+    - ["Connor Waters", "http://github.com/connorwaters"]
 translators:
     - ["Arnie97", "https://github.com/Arnie97"]
 lang: zh-cn
@@ -33,7 +35,6 @@ C++提供了对硬件的紧密控制（正如C语言一样），
 
 // 和C语言一样，在C++中，你的程序会从main()开始执行，
 // 该函数的返回值应当为int型，这个返回值会作为程序的退出状态值。
-// 不过，大多数的编译器（gcc，clang等）也接受 void main() 的函数原型。
 // （参见 http://en.wikipedia.org/wiki/Exit_status 来获取更多信息）
 int main(int argc, char** argv)
 {
@@ -51,10 +52,10 @@ int main(int argc, char** argv)
 
 // 然而，C++和C语言也有一些区别：
 
-// 在C++中，字符字面量的大小是一个字节。
+// 在C++中，字符字面量的类型是char。
 sizeof('c') == 1
 
-// 在C语言中，字符字面量的大小与int相同。
+// 而在C语言中，字符字面量的类型是int。
 sizeof('c') == sizeof(10)
 
 
@@ -144,7 +145,7 @@ namespace First {
 namespace Second {
     void foo()
     {
-        printf("This is Second::foo\n")
+        printf("This is Second::foo\n");
     }
 }
 
